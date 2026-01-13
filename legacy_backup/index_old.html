@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero to Shipped | Hack702</title>
+  <meta name="description" content="Build your first AI-powered project in 3 hours. A free intro class for Las Vegas residents curious about tech careers.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-charcoal: #1a1a1a;
+      --color-charcoal-light: #2d2d2d;
+      --color-sand: #f5f0e8;
+      --color-sand-dark: #e8e0d4;
+      --color-amber: #c9662c;
+      --color-amber-light: #e07a3a;
+      --color-amber-glow: rgba(201, 102, 44, 0.15);
+      --color-text: #1a1a1a;
+      --color-text-muted: #5a5a5a;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-sand);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      background: var(--color-amber);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      z-index: 1000;
+      font-weight: 500;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--color-sand-dark);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-charcoal);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--color-amber);
+    }
+
+    .nav-cta {
+      background: var(--color-charcoal);
+      color: var(--color-sand);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .nav-cta:hover,
+    .nav-cta:focus {
+      background: var(--color-charcoal-light);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4rem 0 5rem;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -10%;
+      width: 60%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, var(--color-amber-glow) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--color-amber);
+      color: white;
+      padding: 0.4rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: var(--color-charcoal);
+    }
+
+    h1 span {
+      color: var(--color-amber);
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-amber);
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px var(--color-amber-glow);
+    }
+
+    .hero-cta:hover,
+    .hero-cta:focus {
+      background: var(--color-amber-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--color-amber-glow);
+    }
+
+    .hero-cta svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-meta {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-meta-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--color-amber);
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 0;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--color-charcoal);
+    }
+
+    .section-intro {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 650px;
+    }
+
+    /* What You'll Build */
+    .projects-section {
+      background: var(--color-charcoal);
+      color: var(--color-sand);
+      margin: 0 -1.5rem;
+      padding: 4rem 1.5rem;
+    }
+
+    .projects-section h2 {
+      color: var(--color-sand);
+    }
+
+    .projects-section .section-intro {
+      color: var(--color-sand-dark);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: var(--color-charcoal-light);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-amber);
+    }
+
+    .project-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--color-sand);
+    }
+
+    .project-card p {
+      color: rgba(245, 240, 232, 0.7);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .project-card .tag {
+      display: inline-block;
+      background: var(--color-amber);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* What You'll Learn */
+    .learn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .learn-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid var(--color-sand-dark);
+    }
+
+    .learn-card-number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-amber);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .learn-card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .learn-card p {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+    }
+
+    .learn-card .time {
+      font-size: 0.8rem;
+      color: var(--color-amber);
+      font-weight: 500;
+      margin-top: 0.75rem;
+    }
+
+    /* Who This Is For */
+    .audience-list {
+      display: grid;
+      gap: 1rem;
+      max-width: 700px;
+    }
+
+    .audience-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: white;
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--color-sand-dark);
+    }
+
+    .audience-item svg {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      color: var(--color-amber);
+      margin-top: 2px;
+    }
+
+    .audience-item p {
+      font-size: 1rem;
+    }
+
+    .audience-item strong {
+      color: var(--color-charcoal);
+    }
+
+    /* What You Leave With */
+    .outcomes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .outcome {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .outcome-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--color-amber-glow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .outcome-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--color-amber);
+    }
+
+    .outcome h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .outcome p {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* FAQ */
+    .faq-section {
+      background: white;
+      margin: 0 -1.5rem;
+      padding: 4rem 1.5rem;
+    }
+
+    .faq-grid {
+      display: grid;
+      gap: 1.5rem;
+      max-width: 800px;
+    }
+
+    .faq-item {
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-sand-dark);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .faq-item h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--color-charcoal);
+    }
+
+    .faq-item p {
+      color: var(--color-text-muted);
+    }
+
+    /* Final CTA */
+    .cta-section {
+      text-align: center;
+      padding: 5rem 0;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-charcoal);
+      color: var(--color-sand);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    footer p {
+      color: rgba(245, 240, 232, 0.6);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--color-amber);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-logo span {
+      color: var(--color-amber);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+
+      .hero {
+        padding: 3rem 0 4rem;
+      }
+
+      .hero-meta {
+        gap: 1rem;
+      }
+
+      .projects-section,
+      .faq-section {
+        margin: 0 -1.5rem;
+        padding: 3rem 1.5rem;
+      }
+    }
+
+    /* Focus styles */
+    a:focus,
+    button:focus {
+      outline: 3px solid var(--color-amber);
+      outline-offset: 2px;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="logo">Hack<span>702</span></a>
+        <a href="#signup" class="nav-cta">Join the Class</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-badge">Free Intro Class</span>
+          <h1>Zero to <span>Shipped</span></h1>
+          <p class="hero-subtitle">Build your first AI-powered project in 3 hours. No experience needed. Walk away with a live website you made yourself.</p>
+          <a href="#signup" class="hero-cta">
+            Save Your Spot
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              ~3 hours
+            </div>
+            <div class="hero-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Las Vegas / Online
+            </div>
+            <div class="hero-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              100% Free
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You'll Build -->
+    <section class="projects-section">
+      <div class="container">
+        <h2>Pick a Project. Ship It Today.</h2>
+        <p class="section-intro">Choose one of three beginner-friendly projects. By the end of class, it'll be live on the internet with your name on it.</p>
+        
+        <div class="project-grid">
+          <div class="project-card">
+            <span class="tag">Option A</span>
+            <h3>Personal Landing Page</h3>
+            <p>A clean, simple page about you — your background, interests, and how to reach you. Perfect for job hunting or just having your own corner of the internet.</p>
+          </div>
+          <div class="project-card">
+            <span class="tag">Option B</span>
+            <h3>Neighborhood Resource Guide</h3>
+            <p>A one-page site listing helpful resources in your community — food banks, job centers, free services. Something useful you might actually share.</p>
+          </div>
+          <div class="project-card">
+            <span class="tag">Option C</span>
+            <h3>Simple Calculator Tool</h3>
+            <p>A working interactive tool — budget splitter, tip calculator, or unit converter. Real code. Real functionality. Your design.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section>
+      <div class="container">
+        <h2>What We'll Cover</h2>
+        <p class="section-intro">Five modules designed to get you building fast. No lectures. No fluff. Just enough to be dangerous.</p>
+        
+        <div class="learn-grid">
+          <div class="learn-card">
+            <div class="learn-card-number">01</div>
+            <h3>What AI Actually Is</h3>
+            <p>Cut through the hype. Learn what large language models can and can't do — and why that matters for your work.</p>
+            <div class="time">~15 min</div>
+          </div>
+          <div class="learn-card">
+            <div class="learn-card-number">02</div>
+            <h3>Prompting That Works</h3>
+            <p>One simple framework to get useful outputs instead of generic garbage. Practice it until it's second nature.</p>
+            <div class="time">~20 min</div>
+          </div>
+          <div class="learn-card">
+            <div class="learn-card-number">03</div>
+            <h3>Build Your Project</h3>
+            <p>Pick your project and build it with AI assistance. You'll write real code — but you won't do it alone.</p>
+            <div class="time">~60-90 min</div>
+          </div>
+          <div class="learn-card">
+            <div class="learn-card-number">04</div>
+            <h3>Make It Yours</h3>
+            <p>Customize colors, text, and layout. Learn to ask "how do I change X?" and actually implement the answer.</p>
+            <div class="time">~20 min</div>
+          </div>
+          <div class="learn-card">
+            <div class="learn-card-number">05</div>
+            <h3>Ship It Live</h3>
+            <p>Deploy your project to the real internet. Get a link you can share. See your work out in the world.</p>
+            <div class="time">~15 min</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who This Is For -->
+    <section>
+      <div class="container">
+        <h2>This Class Is For You If...</h2>
+        
+        <div class="audience-list">
+          <div class="audience-item">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <p><strong>You've never written code</strong> — and you're not sure if you'd even like it. This is a low-risk way to find out.</p>
+          </div>
+          <div class="audience-item">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <p><strong>You're curious about AI tools</strong> — but haven't figured out how to actually use them for something real.</p>
+          </div>
+          <div class="audience-item">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <p><strong>You're thinking about a career change</strong> — and want to test whether tech makes sense before committing months to learning.</p>
+          </div>
+          <div class="audience-item">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <p><strong>Traditional bootcamps haven't worked for you</strong> — too expensive, too rigid, or too much assumed knowledge.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You Leave With -->
+    <section>
+      <div class="container">
+        <h2>What You'll Walk Away With</h2>
+        
+        <div class="outcomes">
+          <div class="outcome">
+            <div class="outcome-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+            </div>
+            <h3>A Live Project</h3>
+            <p>A real URL you can share. Text it to someone tonight. Put it on your resume tomorrow.</p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h3>A New Skill</h3>
+            <p>You'll know how to direct AI to build things. That skill transfers everywhere.</p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3>A Clear Answer</h3>
+            <p>"I want to learn more" or "This isn't for me" — both are valid. You'll know which one is true for you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Common Questions</h2>
+        
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h3>Do I need to know how to code?</h3>
+            <p>Nope. That's the whole point. You'll write code in this class, but we'll build it together with AI assistance. If you can type and follow instructions, you're qualified.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What do I need to bring?</h3>
+            <p>A laptop or phone with internet access. That's it. All the tools we use are free and work in a browser.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is this really free?</h3>
+            <p>Yes. Hack702 is funded by employers and sponsors, not learners. If you're a Las Vegas resident curious about tech, this costs you nothing but time.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What happens after the class?</h3>
+            <p>If you want to keep going, Hack702 offers a full 6-month program that takes you from this intro all the way to job-ready. But no pressure — this class is complete on its own.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What if I can't make the live session?</h3>
+            <p>All materials will be available to work through on your own time. The live session is optional — it just adds community and real-time help.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="signup">
+      <div class="container">
+        <h2>Ready to Build Something?</h2>
+        <p>Three hours. One project. Zero experience required. Sign up and we'll send you everything you need.</p>
+        
+        <!-- Replace this with your actual signup form embed or link -->
+        <a href="https://forms.gle/YOUR-FORM-ID" class="hero-cta" target="_blank" rel="noopener noreferrer">
+          Save Your Spot
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">Hack<span>702</span></div>
+      <p>Free tech training for Las Vegas.</p>
+      <p style="margin-top: 1rem;">Questions? <a href="mailto:hello@hack702.org">hello@hack702.org</a></p>
+    </div>
+  </footer>
+</body>
+</html>
