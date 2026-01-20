@@ -1,26 +1,37 @@
 :root {
-  --color-charcoal: #1a1a1a;
-  --color-charcoal-light: #2d2d2d;
-  --color-sand: #f5f0e8;
-  --color-sand-dark: #e8e0d4;
-  --color-amber: #c9662c;
-  --color-amber-light: #e07a3a;
-  --color-amber-glow: rgba(201, 102, 44, 0.15);
-  --color-text: #1a1a1a;
-  --color-text-muted: #5a5a5a;
-  --font-display: 'Fraunces', Georgia, serif;
+  /* Enhanced Palette - Premium Feel */
+  --color-charcoal: #0f1115;
+  --color-charcoal-light: #1c1f26;
+  --color-sand: #fdfbf7;
+  --color-sand-dark: #f0eadd;
+  --color-amber: #f25c05;
+  /* More vibrant orange/red */
+  --color-amber-light: #ff7d2e;
+  --color-amber-glow: rgba(242, 92, 5, 0.15);
+  --color-text: #0f1115;
+  --color-text-muted: #52525b;
+  --color-border: rgba(15, 17, 21, 0.08);
+
+  --font-display: 'Fraunces', serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
-  
+
   /* Desert Theme additions */
-  --color-sky-day: #87CEEB;
-  --color-sky-dusk: #ff9b71;
-  --color-tech-accent: #00ffcc; /* Tech accent for hidden code elements */
+  --color-sky-day: #bfdbfe;
+  --color-sky-dusk: #fdba74;
+  --color-tech-accent: #14b8a6;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-glow: 0 0 40px -10px var(--color-amber-glow);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -36,6 +47,41 @@ body {
   overflow-x: hidden;
 }
 
+/* Typography Overrides */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Utilities */
+.glass-panel {
+  background: rgba(253, 251, 247, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-panel-dark {
+  background: rgba(28, 31, 38, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+  max-width: 1200px;
+  /* Video - Slightly wider for modern feel */
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
 /* Accessibility */
 .skip-link {
   position: absolute;
@@ -43,27 +89,22 @@ body {
   left: 0;
   background: var(--color-amber);
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   z-index: 1000;
-  font-weight: 500;
+  font-weight: 600;
+  border-radius: 0 0 8px 0;
 }
 
 .skip-link:focus {
   top: 0;
 }
 
-/* Layout Utilities */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
 /* Focus styles */
-a:focus,
-button:focus {
-  outline: 3px solid var(--color-amber);
-  outline-offset: 2px;
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 /* Reduced motion */

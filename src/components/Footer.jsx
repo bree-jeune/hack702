@@ -1,40 +1,46 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { Twitter, Github, Linkedin, Mail, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <>
-            {/* Final CTA in Footer area context or separate? Plan had CTA section. */}
-            <section className="py-20 text-center" id="signup">
-                <div className="container">
-                    <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-4 text-[var(--color-charcoal)]">
-                        Ready to Build Something?
+        <footer className="bg-[var(--color-charcoal)] text-[var(--color-sand)] py-20 border-t border-white/5">
+            <div className="container">
+                <div className="max-w-4xl mx-auto text-center mb-16">
+                    <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-white">
+                        Ready to build for your city?
                     </h2>
-                    <p className="text-lg text-[var(--color-text-muted)] mb-8 max-w-[500px] mx-auto">
-                        Three hours. One project. Zero experience required. Sign up and we'll send you everything you need.
+                    <p className="text-xl text-[var(--color-text-muted)] mb-10 max-w-2xl mx-auto">
+                        Join 200+ local developers, designers, and organizers building the future of Las Vegas.
                     </p>
-
-                    <a href="https://forms.gle/YOUR-FORM-ID" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[var(--color-amber)] text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-[0_4px_14px_var(--color-amber-glow)] transition-all hover:bg-[var(--color-amber-light)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_var(--color-amber-glow)]">
-                        Save Your Spot
-                        <ArrowRight className="w-5 h-5" />
+                    <a href="#join" className="inline-flex items-center gap-2 bg-[var(--color-amber)] text-white px-10 py-5 rounded-full text-xl font-bold hover:bg-[var(--color-amber-light)] transition-all hover:scale-105 shadow-[0_0_40px_var(--color-amber-glow)]">
+                        <MessageCircle className="w-6 h-6" />
+                        Join the Discord
                     </a>
                 </div>
-            </section>
 
-            <footer className="bg-[var(--color-charcoal)] text-[var(--color-sand)] py-12 text-center">
-                <div className="container">
-                    <div className="font-display text-xl font-bold mb-2">
-                        Hack<span className="text-[var(--color-amber)]">702</span>
+                <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/10">
+                    <div className="mb-6 md:mb-0">
+                        <span className="font-display text-2xl font-bold text-white block mb-2">Hack702</span>
+                        <span className="text-sm text-[var(--color-text-muted)]">© 2024 Open Source Community. MIT License.</span>
                     </div>
-                    <p className="text-[rgba(245,240,232,0.6)] text-sm mb-4">
-                        Free tech training for Las Vegas.
-                    </p>
-                    <p className="text-sm">
-                        Questions? <a href="mailto:hello@hack702.org" className="text-[var(--color-amber)] hover:underline">hello@hack702.org</a>
-                    </p>
+
+                    <div className="flex gap-6">
+                        <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-[var(--color-amber)] hover:text-white transition-all text-[var(--color-text-muted)]">
+                            <Twitter className="w-5 h-5" />
+                        </a>
+                        <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-[var(--color-amber)] hover:text-white transition-all text-[var(--color-text-muted)]">
+                            <Github className="w-5 h-5" />
+                        </a>
+                        <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-[var(--color-amber)] hover:text-white transition-all text-[var(--color-text-muted)]">
+                            <Linkedin className="w-5 h-5" />
+                        </a>
+                        <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-[var(--color-amber)] hover:text-white transition-all text-[var(--color-text-muted)]">
+                            <Mail className="w-5 h-5" />
+                        </a>
+                    </div>
                 </div>
-            </footer>
-        </>
+            </div>
+        </footer>
     );
 };
 

@@ -1,35 +1,48 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Plus } from 'lucide-react';
 
 const FAQSection = () => {
     const faqs = [
-        { q: "Do I need to know how to code?", a: "Nope. That's the whole point. You'll write code in this class, but we'll build it together with AI assistance. If you can type and follow instructions, you're qualified." },
-        { q: "What do I need to bring?", a: "A laptop or phone with internet access. That's it. All the tools we use are free and work in a browser." },
-        { q: "Is this really free?", a: "Yes. Hack702 is funded by employers and sponsors, not learners. If you're a Las Vegas resident curious about tech, this costs you nothing but time." },
-        { q: "What happens after the class?", a: "If you want to keep going, Hack702 offers a full 6-month program that takes you from this intro all the way to job-ready. But no pressure — this class is complete on its own." },
-        { q: "What if I can't make the live session?", a: "All materials will be available to work through on your own time. The live session is optional — it just adds community and real-time help." }
+        { q: "Experience level required?", a: "Zero to Senior. We maintain a beginner track for new learners and an advanced track for contributors who want to mentor or build core infrastructure." },
+        { q: "Is this really free?", a: "Yes. Forever. We are an open-source community funded by corporate sponsors who care about the local tech ecosystem. No income share agreements, no hidden fees." },
+        { q: "Who owns my code?", a: "The community. All projects are open-source (MIT License). You can put it on your portfolio, fork it, or build a startup on top of it." },
+        { q: "Can I join remotely?", a: "Most collaboration happens on our Discord and GitHub. We host monthly in-person meetups in Downtown Las Vegas for code sprints." },
+        { q: "I'm a designer/PM, can I join?", a: "Absolutely. Civic tech needs research, design, and product management just as much as it needs code." }
     ];
 
     return (
-        <section className="py-16 bg-white">
+        <section id="faq" className="py-24 bg-[var(--color-sand)]">
             <div className="container">
-                <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-8 text-[var(--color-charcoal)]">
-                    Common Questions
-                </h2>
+                <div className="text-center max-w-[700px] mx-auto mb-16">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="font-display text-[clamp(2rem,4vw,3rem)] font-bold mb-6 text-[var(--color-charcoal)]"
+                    >
+                        Community FAQ
+                    </motion.h2>
+                </div>
 
-                <div className="grid gap-6 max-w-[800px]">
+                <div className="grid gap-6 max-w-[800px] mx-auto">
                     {faqs.map((faq, index) => (
-                        <div
+                        <motion.div
                             key={index}
-                            className="pb-6 border-b border-[var(--color-sand-dark)] last:border-0 last:pb-0"
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className="bg-white rounded-2xl p-8 border border-[var(--color-border)] shadow-sm"
                         >
-                            <h3 className="text-lg font-semibold mb-2 text-[var(--color-charcoal)]">
+                            <h3 className="text-xl font-bold mb-4 text-[var(--color-charcoal)] flex items-start justify-between gap-4">
                                 {faq.q}
+                                <Plus className="w-5 h-5 text-[var(--color-amber)] shrink-0" />
                             </h3>
-                            <p className="text-[var(--color-text-muted)]">
+                            <p className="text-[var(--color-text-muted)] leading-relaxed text-lg">
                                 {faq.a}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
